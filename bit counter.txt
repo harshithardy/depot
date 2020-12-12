@@ -1,0 +1,70 @@
+int led2 = 5;
+int led1 = 8;
+int led0 = 13;
+int button = 3;
+int led3 = 2;
+int buttonstate=0;
+int buttoncount=0;
+
+void setup() {
+  pinMode(led0, OUTPUT);
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+  pinMode(button, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+   buttonstate = digitalRead(button);
+  if(buttonstate==LOW)
+  {
+    buttoncount==buttoncount++;
+  }
+  if (buttoncount= 1)
+  
+ { 
+  reset();
+  for(int i = 0; i < 8; ++i) 
+  {
+    signal( led2, ((i >> 2) % 2) == 1); 
+    signal( led1, ((i >> 1) % 2) == 1); 
+    signal( led0, ((i >> 0) % 2) == 1); 
+  }
+}
+if (buttoncount =2)
+
+{
+    for (int i = 0; i < 255; i++){ 
+    analogWrite(led3, i); 
+    delay(5); 
+  }
+  for (int i = 255; i > 0; i--){
+    analogWrite(led3, i);
+    delay(5);
+  }
+}
+if( buttoncount = 3)
+ {
+  digitalWrite(led3, HIGH);   
+  delay(1000);               
+  digitalWrite(led3, LOW);    
+  delay(1000);               
+}
+}
+
+
+void reset() {
+  signal( led2, 0);
+  signal( led1, 0);
+  signal( led0, 0);
+}
+
+void signal(int led, bool on) {
+  if(on) {
+    digitalWrite(led, HIGH);
+  }
+  else {
+    digitalWrite(led, LOW);
+  }
+}
