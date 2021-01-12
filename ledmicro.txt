@@ -1,0 +1,19 @@
+void main() {
+
+
+   int analog_read;
+    TRISB.B1=0;
+    PORTB.B1=0;
+
+    ADCON0=0b11000011;
+    ADCON1=0b10110101;
+
+   while (1)
+   {
+   ADCON0.DONE==1;
+   while(ADCON0.DONE==1);
+      analog_read= ADRESL + ADRESH*255;
+      PORTB.B1=analog_read;
+   }
+ }
+
